@@ -1,0 +1,41 @@
+//387 first unique character instring
+
+// tc; O(N)..SC; O(N)
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+       unordered_map<char,int> m;
+       for(char& c:s){
+        m[c]++;
+       } 
+
+       for(int i=0; i< s.size();i++){
+        if(m[s[i]]==1) return i;
+       }
+
+       return -1;
+    }
+};
+
+// brute force tc: O(N^2)
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int n = s.size();
+        for(int i = 0; i < n; i++) {
+            bool isUnique = true;
+            for(int j = 0; j < n; j++) {
+                if(i != j && s[i] == s[j]) {
+                    isUnique = false;
+                    break;
+                }
+            }
+            if(isUnique) return i;
+        }
+        return -1;
+    }
+};
+
+
